@@ -1,0 +1,1733 @@
+/* Ruta Saber de Lumora. Todo está escopado a .saber para no chocar con el resto de la app. */
+
+.saber {
+  --bg: #faf9fd;
+  --surface: #ffffff;
+  --ink: #28233b;
+  --muted: #6b6680;
+  --line: #e4def0;
+  --accent: #6240bf;
+  --accent-grad: linear-gradient(110deg, #8664e4, #6c49cc);
+  --on-accent: #ffffff;
+  --lumen: #b5a1ff;
+  --on-lumen: #28233b;
+  --ciego: #b03a27;
+  --duda: #855200;
+  --adivine: #6b6680;
+  --ok: #2b7a4b;
+  --tint-ciego: #fbeae6;
+  --tint-ok: #e5f3ea;
+  --tint-lumen: #f0ebff;
+  --font-display: 'Nunito', 'Trebuchet MS', system-ui, sans-serif;
+  --font-body: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+
+  max-width: 720px;
+  margin-inline: auto;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  padding-block: 8px 48px;
+}
+
+.saber *,
+.saber *::before,
+.saber *::after {
+  box-sizing: border-box;
+}
+.saber h1,
+.saber h2,
+.saber h3 {
+  font-family: var(--font-display);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  margin: 0;
+}
+.saber p {
+  margin: 0;
+}
+.saber button,
+.saber input {
+  font: inherit;
+  color: inherit;
+}
+.saber :focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.saber .marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+.saber .marca-punto {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--lumen);
+  box-shadow: 0 0 0 5px var(--tint-lumen);
+}
+.saber .encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+.saber .etiqueta-dev {
+  font-size: 0.8rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.saber .hero h1 {
+  font-size: clamp(2.1rem, 8.5vw, 3.1rem);
+  font-weight: 800;
+}
+.saber .hero .sub {
+  margin-top: 16px;
+  color: var(--muted);
+  max-width: 52ch;
+}
+.saber .formulario {
+  margin-top: 32px;
+  display: grid;
+  gap: 24px;
+}
+.saber .campo {
+  display: grid;
+  gap: 8px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.saber .campo > legend,
+.saber .campo > label {
+  font-weight: 700;
+  padding: 0;
+}
+.saber .campo input[type='text'] {
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  width: 100%;
+}
+.saber .ayuda {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.saber .eleccion {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+.saber .eleccion label,
+.saber .opcion,
+.saber .confianza label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  cursor: pointer;
+}
+.saber .eleccion input,
+.saber .opcion input,
+.saber .confianza input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+.saber .eleccion label:has(input:checked),
+.saber .opcion:has(input:checked),
+.saber .confianza label:has(input:checked) {
+  border-color: var(--accent);
+  background: var(--tint-lumen);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+.saber .eleccion label:has(input:focus-visible),
+.saber .opcion:has(input:focus-visible),
+.saber .confianza label:has(input:focus-visible) {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.saber .privacidad {
+  margin-top: 28px;
+  font-size: 0.92rem;
+  color: var(--muted);
+  display: flex;
+  gap: 10px;
+}
+.saber .privacidad::before {
+  content: '';
+  flex: none;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--lumen);
+}
+.saber .boton {
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 12px;
+  border: 0;
+  background: var(--accent-grad);
+  color: var(--on-accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+.saber .boton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.saber .boton-suave {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+}
+.saber .acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.saber .progreso {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.saber .progreso-barra {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
+  overflow: hidden;
+}
+.saber .progreso-barra > span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+}
+.saber .progreso-texto {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.saber .enunciado {
+  font-size: 1.22rem;
+  line-height: 1.45;
+  font-weight: 700;
+}
+.saber .tabla-caja {
+  margin-top: 18px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.saber .tabla-caja table {
+  border-collapse: collapse;
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+}
+.saber .tabla-caja th,
+.saber .tabla-caja td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.saber .tabla-caja th {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.saber .tabla-caja tr:last-child td {
+  border-bottom: 0;
+}
+.saber .opciones {
+  margin-top: 22px;
+  display: grid;
+  gap: 10px;
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+.saber .opcion .letra {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+}
+.saber .opcion:has(input:checked) .letra {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+.saber .bloque-confianza {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px dashed var(--line);
+}
+.saber .bloque-confianza h2 {
+  font-size: 1.1rem;
+}
+.saber .confianza {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+.saber .confianza label {
+  display: grid;
+  gap: 2px;
+  align-content: center;
+}
+.saber .confianza strong {
+  font-weight: 700;
+}
+.saber .confianza span {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.saber .pie-pregunta {
+  margin-top: 28px;
+}
+.saber .resultado h1 {
+  font-size: clamp(1.9rem, 7vw, 2.6rem);
+  font-weight: 800;
+}
+.saber .resultado .sub {
+  margin-top: 10px;
+  color: var(--muted);
+}
+.saber .cifras {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+  gap: 10px;
+}
+.saber .cifra {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.saber .cifra b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.saber .cifra span {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.saber .prioridad {
+  margin-top: 26px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: var(--tint-lumen);
+  border: 1.5px solid var(--lumen);
+}
+.saber .prioridad h2 {
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.saber .prioridad p {
+  margin-top: 8px;
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.saber .mapa {
+  margin-top: 40px;
+}
+.saber .mapa h2,
+.saber .revision h2 {
+  font-size: 1.4rem;
+}
+.saber .leyenda {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.saber .fila-error {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.saber .fila-error.es-prioridad {
+  border-color: var(--ink);
+}
+.saber .fila-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.saber .fila-cabecera h3 {
+  font-size: 1.1rem;
+}
+.saber .conteo {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.saber .fila-error .desc {
+  margin-top: 4px;
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+.saber .fichas {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 30px;
+  align-items: center;
+}
+.saber .ficha {
+  min-width: 30px;
+  height: 30px;
+  padding-inline: 8px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--bg);
+}
+.saber .ficha.segura {
+  background: var(--ciego);
+}
+.saber .ficha.dudo {
+  background: var(--duda);
+}
+.saber .ficha.adivine {
+  background: var(--adivine);
+}
+.saber .sin-errores {
+  font-size: 0.9rem;
+  color: var(--ok);
+  font-weight: 700;
+}
+.saber .siguiente {
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 14px;
+  border: 1.5px dashed var(--line);
+}
+.saber .siguiente h2 {
+  font-size: 1.2rem;
+}
+.saber .siguiente p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+.saber .revision {
+  margin-top: 40px;
+}
+.saber .revision details {
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.saber .revision summary {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+  cursor: pointer;
+  min-height: 52px;
+}
+.saber .revision summary .num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  flex: none;
+}
+.saber .revision summary .estado {
+  margin-left: auto;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.saber .estado.bien {
+  background: var(--tint-ok);
+  color: var(--ok);
+}
+.saber .estado.mal {
+  background: var(--tint-ciego);
+  color: var(--ciego);
+}
+.saber .revision .detalle {
+  padding: 0 16px 16px;
+  display: grid;
+  gap: 8px;
+  font-size: 0.97rem;
+}
+.saber .revision .detalle p b {
+  font-weight: 700;
+}
+.saber .fin-acciones {
+  margin-top: 40px;
+}
+@media (prefers-reduced-motion: no-preference) {.saber .progreso-barra > span {
+    transition: width 0.25s ease;
+  }
+}
+.saber .boton-chico {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  font-weight: 700;
+  cursor: pointer;
+}
+.saber .pasos {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  display: grid;
+  gap: 12px;
+}
+.saber .pasos li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.saber .paso-num {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--tint-lumen);
+  border: 1.5px solid var(--lumen);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+.saber .titulo-ruta {
+  font-size: clamp(1.7rem, 6.5vw, 2.3rem);
+  font-weight: 800;
+}
+.saber .hoy {
+  margin-top: 24px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 14px;
+}
+.saber .hoy-fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.saber .hoy h2 {
+  font-size: 1.1rem;
+}
+.saber .hoy-cifras {
+  text-align: right;
+  display: grid;
+}
+.saber .hoy-cifras b {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.saber .hoy-cifras span {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.saber .paso-inicial {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: var(--tint-lumen);
+  border: 1.5px solid var(--lumen);
+}
+.saber .paso-inicial h2 {
+  font-size: 1.2rem;
+}
+.saber .paso-inicial p {
+  margin: 8px 0 14px;
+}
+.saber .ruta-lista {
+  margin-top: 36px;
+}
+.saber .ruta-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.saber .ruta-encabezado h2,
+.saber .mi-progreso h2 {
+  font-size: 1.4rem;
+}
+.saber .tarjeta-tipo {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.saber .tarjeta-tipo.es-prioridad {
+  border: 2px solid var(--ink);
+}
+.saber .tarjeta-tipo h3 {
+  font-size: 1.1rem;
+}
+.saber .tarjeta-tipo .desc {
+  margin-top: 4px;
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+.saber .meta-tipo {
+  margin-top: 8px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.saber .pildora {
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.saber .pildora.dominado {
+  background: var(--tint-ok);
+  color: var(--ok);
+  border-color: transparent;
+}
+.saber .pildora.proceso {
+  background: var(--tint-lumen);
+  color: var(--duda);
+  border-color: transparent;
+}
+.saber .mi-progreso {
+  margin-top: 40px;
+}
+.saber .historial {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  gap: 8px;
+}
+.saber .historial li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.saber .historial b {
+  font-variant-numeric: tabular-nums;
+}
+.saber .etiqueta-seccion {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.saber .titulo-leccion {
+  font-size: clamp(1.9rem, 7vw, 2.6rem);
+  font-weight: 800;
+}
+.saber .leccion {
+  margin-top: 22px;
+  padding: 20px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 16px;
+}
+.saber .leccion h2 {
+  font-size: 1.3rem;
+}
+.saber .ejemplo,
+.saber .chequeo {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+.saber .chequeo {
+  background: var(--tint-lumen);
+  border-color: var(--lumen);
+}
+.saber .aviso-nuevo {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--tint-lumen);
+  border: 1.5px solid var(--lumen);
+  font-size: 0.97rem;
+}
+.saber .opcion.correcta {
+  border-color: var(--ok);
+  background: var(--tint-ok);
+  box-shadow: inset 0 0 0 1.5px var(--ok);
+}
+.saber .opcion.incorrecta {
+  border-color: var(--ciego);
+  background: var(--tint-ciego);
+  box-shadow: inset 0 0 0 1.5px var(--ciego);
+}
+.saber .opciones:disabled .opcion {
+  cursor: default;
+}
+.saber .sello {
+  margin-left: auto;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.saber .sello.ok {
+  color: var(--ok);
+}
+.saber .sello.mal {
+  color: var(--ciego);
+}
+.saber .enlace {
+  margin-top: 16px;
+  padding: 8px 0;
+  min-height: 44px;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.saber .pista {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--tint-lumen);
+  border: 1.5px solid var(--lumen);
+}
+.saber .retro {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  display: grid;
+  gap: 14px;
+}
+.saber .retro.bien {
+  border-color: var(--ok);
+  background: var(--tint-ok);
+}
+.saber .retro.mal {
+  border-color: var(--lumen);
+  background: var(--tint-lumen);
+}
+.saber .retro h2 {
+  font-size: 1.25rem;
+}
+.saber .propia {
+  display: grid;
+  gap: 8px;
+}
+.saber .propia label {
+  font-weight: 700;
+}
+.saber .propia input {
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  width: 100%;
+}
+.saber .propia .boton {
+  justify-self: start;
+}
+.saber .explicacion {
+  display: grid;
+  gap: 8px;
+}
+.saber .retro .pie-pregunta {
+  margin-top: 4px;
+}
+.saber .comparacion {
+  margin-top: 26px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--tint-ok);
+  border: 1.5px solid var(--ok);
+}
+.saber .comparacion h2 {
+  font-size: 1.1rem;
+}
+.saber .comparacion p {
+  margin-top: 6px;
+}
+.saber .prioridad.lograda {
+  background: var(--tint-ok);
+  border-color: var(--ok);
+}
+.saber .opcion.correcta:has(input:checked),
+.saber .opcion.correcta {
+  border-color: var(--ok);
+  background: var(--tint-ok);
+  box-shadow: inset 0 0 0 1.5px var(--ok);
+}
+.saber .opcion.incorrecta:has(input:checked),
+.saber .opcion.incorrecta {
+  border-color: var(--ciego);
+  background: var(--tint-ciego);
+  box-shadow: inset 0 0 0 1.5px var(--ciego);
+}
+.saber .opcion.correcta:has(input:checked) .letra {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: var(--bg);
+}
+.saber .opcion.incorrecta:has(input:checked) .letra {
+  background: var(--ciego);
+  border-color: var(--ciego);
+  color: var(--bg);
+}
+
+.saber .boton {
+  box-shadow: 0 6px 14px #7856d926;
+}
+
+.saber .boton-suave {
+  box-shadow: none;
+}
+
+.saber .volver {
+  min-height: 44px;
+  padding: 0 4px;
+  margin-bottom: 18px;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.saber h1,
+.saber h2,
+.saber h3 {
+  color: var(--ink);
+}
+
+/* ---------- Respaldo del progreso ---------- */
+.saber .respaldo {
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.saber .respaldo h2 {
+  font-size: 1.4rem;
+}
+.saber .respaldo-confirmar {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--tint-lumen);
+  border: 1.5px solid var(--lumen);
+}
+.saber .respaldo-confirmar h3 {
+  font-size: 1.05rem;
+}
+.saber .respaldo-confirmar p {
+  margin: 6px 0 14px;
+}
+.saber .respaldo-mensaje {
+  min-height: 1.4em;
+  margin-top: 12px;
+  font-weight: 600;
+}
+.saber .respaldo-mensaje.bien {
+  color: #1f7a46;
+}
+.saber .respaldo-mensaje.mal {
+  color: #b3261e;
+}
+
+/* ---------- Lectura crítica y selector de competencia ---------- */
+.saber .texto-lectura {
+  margin: 18px 0 0;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--brand, #7856d9);
+  border-radius: 12px;
+}
+.saber .texto-lectura blockquote {
+  margin: 8px 0 0;
+}
+.saber .texto-lectura p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+.saber .texto-lectura + .enunciado,
+.saber .detalle .texto-lectura + p {
+  margin-top: 18px;
+}
+.saber .selector-competencia {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+.saber .selector-competencia button {
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.saber .selector-competencia button[aria-pressed='true'] {
+  background: #6240bf;
+  border-color: #6240bf;
+  color: #fff;
+}
+.saber .selector-competencia button:focus-visible {
+  outline: 3px solid #6240bf;
+  outline-offset: 2px;
+}
+
+/* ---------- Nia ---------- */
+.saber .solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.saber .nia-boton {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 40;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: #6240bf;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(98, 64, 191, 0.35);
+  cursor: pointer;
+}
+.saber .nia-boton:focus-visible,
+.saber .nia-cerrar:focus-visible,
+.saber .nia-chips button:focus-visible,
+.saber .nia-form input:focus-visible {
+  outline: 3px solid #6240bf;
+  outline-offset: 2px;
+}
+.saber .nia-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 76px;
+  z-index: 41;
+  width: min(380px, calc(100vw - 32px));
+  max-height: min(560px, calc(100vh - 100px));
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #28233b;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(40, 35, 59, 0.22);
+  padding: 14px;
+}
+.saber .nia-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.saber .nia-cabecera h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.saber .nia-cerrar {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  color: inherit;
+}
+.saber .nia-aviso {
+  margin: 0 0 8px;
+  font-size: 0.82rem;
+  color: #5b5470;
+}
+.saber .nia-mensajes {
+  flex: 1;
+  min-height: 120px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 2px;
+}
+.saber .nia-msg {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f0ebff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 94%;
+}
+.saber .nia-msg.tu {
+  align-self: flex-end;
+  background: #e9e6f2;
+}
+.saber .nia-msg p {
+  margin: 0 0 6px;
+}
+.saber .nia-quien {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #5b5470;
+  margin-bottom: 2px;
+}
+.saber .nia-accion {
+  margin-top: 6px;
+}
+.saber .nia-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+.saber .nia-chips button {
+  min-height: 44px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1.5px solid #c9bdf0;
+  background: #fff;
+  color: #28233b;
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.saber .nia-form {
+  display: flex;
+  gap: 8px;
+}
+.saber .nia-form input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1.5px solid #b8abdd;
+  border-radius: 10px;
+  font: inherit;
+}
+@media (prefers-reduced-motion: reduce) {
+  .saber * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+.saber h1:focus { outline: none; }
+
+/* ---------- Historia, nivel, mapa y medallas ---------- */
+.saber .historia {
+  margin: 22px 0 6px;
+  padding: 18px 20px;
+  background: var(--tint-lumen);
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+.saber .historia h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+.saber .historia p {
+  margin: 0 0 8px;
+}
+.saber .historia p:last-child {
+  margin-bottom: 0;
+}
+
+.saber .nivel {
+  margin: 18px 0;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.saber .nivel-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.saber .nivel h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+.saber .nivel-puntos {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.saber .nivel .ayuda {
+  margin: 8px 0 0;
+}
+
+.saber .mapa-habilidades {
+  margin: 24px 0;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.saber .mapa-habilidades h2 {
+  margin: 0 0 4px;
+}
+.saber .mapa-avance {
+  margin: 8px auto 0;
+  max-width: 420px;
+}
+.saber .mapa-avance svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.saber .radar-anillo {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.saber .radar-eje {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.saber .radar-ahora {
+  fill: rgba(98, 64, 191, 0.22);
+  stroke: var(--accent);
+  stroke-width: 2.5;
+}
+.saber .radar-antes {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+.saber .radar-punto {
+  fill: var(--accent);
+  stroke: #fff;
+  stroke-width: 2;
+}
+.saber .radar-texto {
+  fill: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+.saber .radar-leyenda {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.saber .llave {
+  display: inline-block;
+  width: 22px;
+  height: 0;
+  border-top: 3px solid var(--accent);
+  vertical-align: middle;
+  margin-right: 4px;
+}
+.saber .llave.antes {
+  border-top: 3px dashed var(--muted);
+}
+
+.saber .camino {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  position: relative;
+}
+.saber .camino li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+  position: relative;
+}
+.saber .camino li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 38px;
+  bottom: -8px;
+  width: 2px;
+  background: var(--line);
+}
+.saber .camino .nodo {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 1rem;
+  z-index: 1;
+}
+.saber .camino .proceso .nodo {
+  border-color: var(--duda);
+  color: var(--duda);
+}
+.saber .camino .dominado .nodo {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 0 4px var(--tint-lumen);
+}
+
+.saber .medallas {
+  margin: 28px 0;
+}
+.saber .medallas-lista {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.saber .medallas-lista li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.saber .medallas-lista li.lograda {
+  background: var(--tint-lumen);
+  border-color: #c9bdf0;
+}
+.saber .medalla-icono {
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: var(--muted);
+}
+.saber .medallas-lista li.lograda .medalla-icono {
+  color: var(--accent);
+}
+
+.saber .recompensa {
+  margin: 18px 0;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--tint-ok);
+  border: 1px solid #b9dcc6;
+}
+.saber .recompensa h2 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+.saber .recompensa p {
+  margin: 0;
+}
+.saber .recompensa ul {
+  margin: 8px 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+/* ---------- Cuenta y acceso ---------- */
+.saber .acceso,
+.saber .cuenta {
+  max-width: 560px;
+}
+.saber .campo-clave {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.saber .campo-clave input {
+  flex: 1;
+  min-width: 0;
+}
+.saber .opcional {
+  color: var(--muted);
+  font-weight: 400;
+}
+.saber .fila-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) {
+  .saber .fila-campos {
+    grid-template-columns: 1fr;
+  }
+}
+.saber .consentimiento {
+  margin: 16px 0 4px;
+  padding: 14px 16px;
+  background: var(--tint-lumen);
+  border-radius: 12px;
+}
+.saber .consentimiento label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  min-height: 44px;
+}
+.saber .consentimiento input[type='checkbox'] {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  flex: none;
+  accent-color: var(--accent);
+}
+.saber .politica {
+  margin-top: 8px;
+}
+.saber .politica summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--accent);
+}
+.saber .politica p {
+  margin: 0 0 8px;
+}
+.saber .mensaje-error {
+  margin: 10px 0 0;
+  min-height: 1.4em;
+  color: var(--ciego);
+  font-weight: 600;
+}
+.saber .zona-sesion,
+.saber .zona-datos {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.saber .boton-peligro {
+  background: var(--ciego);
+  color: #fff;
+  border: 0;
+}
+.saber .estado-nube {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 12px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.saber .estado-nube .punto {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ok);
+  flex: none;
+}
+.saber .estado-nube.sincronizando .punto,
+.saber .estado-nube.pendiente .punto {
+  background: var(--duda);
+}
+.saber .estado-nube.error .punto,
+.saber .estado-nube.bloqueado .punto {
+  background: var(--ciego);
+}
+.historia-inicio {
+  max-width: 720px;
+  margin: 8px auto 0;
+}
+
+/* ---------- Diseño v2: cabecera de la ruta, selector y Nia ---------- */
+.saber .ruta-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 4px 0 20px;
+  padding: 26px 24px 28px;
+  border-radius: 24px;
+  color: #fff;
+  background: linear-gradient(135deg, #3f2585 0%, #5b3bb5 55%, #7856d9 100%);
+  box-shadow: 0 14px 34px rgba(98, 64, 191, 0.28);
+}
+.saber .ruta-hero::before,
+.saber .ruta-hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  pointer-events: none;
+}
+.saber .ruta-hero::before {
+  width: 260px;
+  height: 260px;
+  right: -90px;
+  top: -110px;
+}
+.saber .ruta-hero::after {
+  width: 220px;
+  height: 220px;
+  left: 30%;
+  bottom: -150px;
+}
+.saber .ruta-kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #efe9ff;
+}
+.saber .ruta-hero .titulo-ruta {
+  position: relative;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 6.4vw, 2.7rem);
+  line-height: 1.12;
+  font-weight: 800;
+  text-wrap: balance;
+}
+.saber .ruta-sub {
+  position: relative;
+  margin: 14px 0 0;
+  max-width: 34em;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: #f3efff;
+}
+.saber .etiqueta-practica {
+  margin: 20px 0 8px;
+}
+.saber .selector-grande {
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  margin: 0 0 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.saber .selector-grande button {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 14px;
+  font-size: 1rem;
+}
+.saber .selector-grande button[aria-pressed='true'] {
+  background: linear-gradient(110deg, #7856d9, #5b3bb5);
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(98, 64, 191, 0.3);
+}
+@media (min-width: 700px) {
+  .saber .selector-grande {
+    flex-direction: row;
+  }
+  .saber .selector-grande button {
+    flex: 1;
+  }
+}
+
+/* Nia */
+.saber .nia-boton {
+  gap: 8px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 22px;
+  background: linear-gradient(110deg, #7856d9, #5b3bb5);
+  box-shadow: 0 10px 26px rgba(91, 59, 181, 0.4);
+}
+.saber .nia-panel {
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 22px 60px rgba(40, 35, 59, 0.3);
+}
+.saber .nia-cabecera {
+  gap: 14px;
+  padding: 16px 18px;
+  color: #fff;
+  background: linear-gradient(120deg, #4a2d93 0%, #6a47c8 60%, #7856d9 100%);
+}
+.saber .nia-avatar {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+.saber .nia-titulo {
+  flex: 1;
+  min-width: 0;
+}
+.saber .nia-cabecera h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.18rem;
+  font-family: var(--font-display);
+}
+.saber .nia-titulo p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 2px 0 0;
+  font-size: 0.86rem;
+  color: #efe9ff;
+}
+.saber .nia-en-linea {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #5ee08e;
+  flex: none;
+}
+.saber .nia-cerrar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+.saber .nia-cerrar:focus-visible {
+  outline: 3px solid #fff;
+}
+.saber .nia-aviso {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 16px 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #f0ebff;
+  border: 1px solid #ddd3fb;
+  color: #4a2d93;
+  font-size: 0.92rem;
+}
+.saber .nia-aviso svg {
+  flex: none;
+}
+.saber .nia-mensajes {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: #f7f4ff;
+}
+.saber .nia-msg {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #e7e0fa;
+  box-shadow: 0 2px 8px rgba(98, 64, 191, 0.07);
+  font-size: 1rem;
+}
+.saber .nia-msg.tu {
+  background: #6240bf;
+  border-color: #6240bf;
+  color: #fff;
+}
+.saber .nia-msg.tu .nia-quien {
+  color: #efe9ff;
+}
+.saber .nia-quien {
+  color: #5b3bb5;
+}
+.saber .nia-chips {
+  margin: 0;
+  padding: 12px 16px 6px;
+  gap: 8px;
+}
+.saber .nia-chips button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid #ddd3fb;
+  border-radius: 14px;
+  background: #fff;
+  color: #28233b;
+  font-weight: 500;
+}
+.saber .nia-chips button svg {
+  color: #7856d9;
+  flex: none;
+}
+.saber .nia-form {
+  margin: 8px 16px 0;
+  padding: 8px;
+  align-items: center;
+  border: 1.5px solid #ddd3fb;
+  border-radius: 16px;
+  background: #fbfaff;
+}
+.saber .nia-form input {
+  border: 0;
+  background: transparent;
+  min-height: 46px;
+}
+.saber .nia-form:focus-within {
+  border-color: #6240bf;
+}
+.saber .nia-form input:focus-visible {
+  outline: none;
+}
+.saber .nia-enviar {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 12px;
+  background: #6240bf;
+  color: #fff;
+  cursor: pointer;
+}
+.saber .nia-enviar:disabled {
+  background: #cfc4f0;
+  cursor: not-allowed;
+}
+.saber .nia-enviar:focus-visible {
+  outline: 3px solid #6240bf;
+  outline-offset: 2px;
+}
+.saber .nia-pie {
+  margin: 0;
+  padding: 10px 16px 14px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: #5b5470;
+}
+.saber .nia-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Nia: el área de mensajes cede espacio para que el pie nunca se corte */
+.saber .nia-panel {
+  max-height: min(600px, calc(100dvh - 96px));
+}
+.saber .nia-mensajes {
+  flex: 1 1 0;
+  min-height: 0;
+}
+.saber .nia-aviso,
+.saber .nia-cabecera,
+.saber .nia-chips,
+.saber .nia-form,
+.saber .nia-pie {
+  flex: none;
+}
+
+/* Nia en pantallas pequeñas: el saludo siempre debe verse */
+.saber .nia-panel {
+  height: min(620px, calc(100dvh - 96px));
+  max-height: none;
+}
+.saber .nia-mensajes {
+  min-height: 150px;
+}
+.saber .nia-chips button {
+  min-height: 44px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+@media (max-height: 800px) {
+  .saber .nia-aviso {
+    display: none;
+  }
+  .saber .nia-mensajes {
+    margin-top: 0;
+  }
+}
