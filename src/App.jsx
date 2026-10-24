@@ -679,13 +679,15 @@ function App() {
               profile={profile}
             />
           ) : activeNav === "Mi cuenta" && cuentaSaber ? (
-            <Cuenta
-              sesion={sesion}
-              onSalio={() => {
-                setActiveNav("Inicio");
-                setShowSaber(false);
-              }}
-            />
+            <div className="saber">
+              <Cuenta
+                sesion={sesion}
+                onSalio={() => {
+                  setActiveNav("Inicio");
+                  setShowSaber(false);
+                }}
+              />
+            </div>
           ) : showSaber ? (
             <SaberGate
               sesion={sesion}
