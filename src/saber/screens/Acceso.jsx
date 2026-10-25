@@ -8,9 +8,9 @@ const PRUEBAS = [
 ];
 
 /** Entrar, crear cuenta y recuperar contraseña. */
-export default function Acceso({ db, recuperando, onClaveCambiada, modoInicial = 'entrar' }) {
+export default function Acceso({ db, recuperando, onClaveCambiada, modoInicial = 'entrar', inicial = null, sumarAvance = false }) {
     const [modo, setModo] = useState(recuperando ? 'nueva' : modoInicial);
-    const [d, setD] = useState({ nombre: '', apodo: '', correo: '', clave: '', prueba: 'saber11', institucion: '', ciudad: '', grado: '', acepta: false });
+    const [d, setD] = useState({ nombre: '', apodo: inicial?.apodo ?? '', correo: '', clave: '', prueba: inicial?.prueba ?? 'saber11', institucion: '', ciudad: '', grado: '', acepta: false });
     const [verClave, setVerClave] = useState(false);
     const [clave2, setClave2] = useState('');
     const [error, setError] = useState('');
@@ -85,6 +85,9 @@ export default function Acceso({ db, recuperando, onClaveCambiada, modoInicial =
     return (<section className="acceso">
       <h1>{titulo}</h1>
       <p className="sub">{sub}</p>
+      {sumarAvance && (modo === 'entrar' || modo === 'registro') && (<p className="aviso-invitado" role="note">
+          Tu avance de ahora se suma a tu cuenta: no se pierde nada.
+        </p>)}
 
       {(modo === 'entrar' || modo === 'registro') && (<div className="selector-competencia" role="group" aria-label="Elige una opción">
           <button type="button" aria-pressed={modo === 'entrar'} onClick={() => cambiarModo('entrar')}>

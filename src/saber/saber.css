@@ -1737,3 +1737,48 @@
     margin-top: 0;
   }
 }
+
+/* Onboarding: preguntas iniciales y guardar el avance después del primer resultado */
+.saber .eleccion.eleccion-columna {
+  grid-template-columns: 1fr;
+}
+.saber .asi-te-ayuda {
+  margin-top: 10px;
+}
+.saber .asi-te-ayuda:not(:empty) {
+  padding: 14px 16px;
+  background: var(--tint-lumen);
+  border-radius: 12px;
+}
+.saber .asi-te-ayuda ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+.saber .asi-te-ayuda li {
+  margin: 4px 0;
+}
+.saber .guardar-avance {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 20px;
+  padding: 16px 18px;
+  background: var(--tint-lumen);
+  border: 1.5px solid var(--accent);
+  border-radius: 14px;
+}
+.saber .guardar-avance p {
+  margin: 4px 0 0;
+  max-width: 52ch;
+}
+.saber .guardar-avance .acciones {
+  margin: 0;
+}
+.saber .aviso-invitado {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  background: var(--tint-lumen);
+  border-radius: 12px;
+}
