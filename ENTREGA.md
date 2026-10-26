@@ -64,8 +64,8 @@ prefiera puede crear su propia cuenta con cualquier correo.
 1. Bienvenida: apodo, prueba (Saber 11 o Saber Pro), qué competencia practicar
    primero y, de forma opcional, qué le pasa al practicar. La competencia elegida
    cambia la ruta, y las dificultades marcadas muestran cómo ayuda Lumora.
-2. Diagnóstico de 10 preguntas con selector de seguridad. Las preguntas se generan con números al azar a partir de 70 plantillas, 35 de razonamiento cuantitativo y 35 de lectura crítica (cada opción incorrecta corresponde a un tipo de error), así que cada intento es distinto y la mejora entre diagnósticos no se debe a memorizar respuestas.
-3. Mapa de errores con el punto ciego principal. Se puede repetir en la otra competencia (lectura crítica) con el selector de la ruta.
+2. Diagnóstico de 10 preguntas con selector de seguridad. Las preguntas se generan con números al azar en razonamiento cuantitativo y lectura crítica a partir de 70 plantillas con números y textos al azar; en ciencias naturales, sociales y ciudadanas e inglés, a partir de 75 preguntas redactadas y revisadas a mano (cada opción incorrecta corresponde a un tipo de error). En las dos primeras cada intento es distinto; en las otras tres el banco es más pequeño y las preguntas se pueden repetir al volver a practicar.
+3. Mapa de errores con el punto ciego principal. Se puede repetir en las otras competencias con el selector de la ruta.
 4. Práctica dirigida del tipo de error prioritario.
 5. Problema nuevo y resultado (dominado o por repasar).
 6. Meta diaria y racha.
@@ -153,7 +153,7 @@ palabras.** Lo marcado con **[CONFIRMA]** solo lo sabes tú.
   correo propio.
 - Sin conexión se puede seguir practicando, pero crear la cuenta o entrar necesita
   internet.
-- Hoy cubre dos competencias: razonamiento cuantitativo y lectura crítica. Las demás son un paso futuro.
+- Cubre cinco competencias: razonamiento cuantitativo, lectura crítica, ciencias naturales (solo Saber 11), sociales y ciudadanas, e inglés. Falta comunicación escrita (Saber Pro), porque se califica con rúbrica. Las preguntas de naturales, ciudadanas e inglés son pocas (25 por área) y se revisaron a mano; conviene que un docente las valide antes de usarlas a gran escala.
 - Nia es una guía con respuestas programadas, no un modelo de lenguaje: no inventa, no da respuestas de ejercicios ni datos oficiales del ICFES.
 - Los textos de lectura son originales y cortos; las plantillas son fichas escritas a mano, así que la variedad de temas es limitada (11 ciudades, 7 temas más 4 géneros para el problema nuevo).
 

@@ -27,7 +27,7 @@ const TEMAS = {
   truco: ['truco', 'trucos', 'como reviso', 'revisar', 'chequeo', 'consejo', 'tip'],
   respuesta: ['respuesta correcta', 'cual es la correcta', 'dime la respuesta', 'dame la respuesta', 'solucion', 'que opcion', 'cual opcion', 'cual es la respuesta', 'resuelve'],
   icfes: ['icfes', 'saber 11', 'saber pro', 'puntaje', 'cuantas preguntas', 'fecha del examen', 'cuando es el examen', 'inscripcion', 'oficial', 'cuanto vale'],
-  competencias: ['competencia', 'competencias', 'lectura critica', 'razonamiento cuantitativo', 'cuantitativo', 'que areas', 'que evaluan'],
+  competencias: ['competencia', 'competencias', 'lectura critica', 'razonamiento cuantitativo', 'cuantitativo', 'que areas', 'que evaluan', 'naturales', 'ciencias', 'sociales', 'ciudadanas', 'ingles', 'english', 'materias'],
   progresoPrivacidad: ['privacidad', 'mis datos', 'donde se guarda', 'guarda mi', 'otro celular', 'cambiar de celular', 'exportar', 'importar', 'respaldo', 'copia'],
   limites: ['eres una ia', 'eres ia', 'eres real', 'chatgpt', 'inteligencia artificial', 'robot', 'eres humana', 'eres humano'],
   // tipos de error
@@ -41,9 +41,27 @@ const TEMAS = {
   inferencia: ['inferencia', 'inferir', 'concluir', 'conclusion', 'exagerada', 'siempre nunca', 'palabras absolutas'],
   relacion: ['causa', 'consecuencia', 'conector', 'relacion entre ideas', 'por que ocurre'],
   intencion: ['intencion', 'proposito', 'a quien va dirigido', 'funcion de la oracion', 'para que se escribio'],
+  variables: ['variable', 'variables', 'experimento', 'variable independiente', 'variable dependiente', 'grupo de control'],
+  grafica: ['grafica', 'tabla de datos', 'leer una tabla', 'intervalo'],
+  concepto: ['masa y peso', 'calor y temperatura', 'cambio fisico', 'cambio quimico', 'concepto cientifico'],
+  fenomeno: ['fenomeno', 'por que sucede', 'explicacion cientifica'],
+  conclusion: ['muestra pequena', 'correlacion', 'generalizar', 'conclusion de datos'],
+  derechos: ['derecho', 'derechos', 'deber', 'deberes', 'tutela', 'derecho de peticion'],
+  perspectiva: ['perspectiva', 'punto de vista', 'fuentes', 'intereses'],
+  hechoopinion: ['hecho', 'opinion', 'hecho y opinion', 'verificable'],
+  mecanismo: ['plebiscito', 'referendo', 'revocatoria', 'cabildo', 'mecanismo de participacion', 'accion popular'],
+  consecuencia: ['consecuencias', 'causas y consecuencias'],
+  vocabulario: ['vocabulario', 'falsos amigos', 'false friends', 'palabra en ingles'],
+  gramatica: ['gramatica', 'tiempo verbal', 'presente simple', 'pasado simple', 'verbo'],
+  textocorto: ['texto corto', 'aviso', 'reading', 'leer en ingles'],
+  funcion: ['funcion comunicativa', 'dialogo', 'conversacion en ingles'],
+  conector: ['conectores en ingles', 'preposicion', 'preposiciones', 'because', 'but'],
 }
 
 const ES_TIPO = new Set(Object.keys(TIPOS_ERROR))
+
+// El nombre completo de cada tipo de error también lo identifica (pesa más que una palabra suelta).
+for (const [id, info] of Object.entries(TIPOS_ERROR)) TEMAS[id] = [...(TEMAS[id] ?? []), normalizar(info.nombre)]
 
 function puntuar(texto, palabras) {
   const t = ` ${texto} `
@@ -197,7 +215,7 @@ export function responder(entrada, contexto = {}) {
     case 'competencias':
       return {
         tema,
-        texto: `Por ahora hay dos: razonamiento cuantitativo (porcentajes, proporciones, unidades, tablas) y lectura crítica (qué dice el texto, ideas principales, inferencias, relaciones e intención). Cada una tiene su diagnóstico y sus cinco tipos de error. Ahora estás en ${comp.nombre.toLowerCase()}.`,
+        texto: `Hay cinco: razonamiento cuantitativo (porcentajes, proporciones, unidades, tablas), lectura crítica (ideas principales, inferencias, intención), ciencias naturales (experimentos, tablas, conceptos, conclusiones), sociales y ciudadanas (derechos, mecanismos de participación, hecho y opinión) e inglés (vocabulario, gramática, textos cortos). Saber Pro no incluye ciencias naturales. Cada una tiene su diagnóstico y sus cinco tipos de error. Ahora estás en ${comp.nombre.toLowerCase()}. Comunicación escrita todavía no está: se califica con rúbrica y por ahora no la evalúo.`,
         sugerencias: ['¿Qué practico primero?', '¿Cómo voy?'],
       }
     case 'progresoPrivacidad':

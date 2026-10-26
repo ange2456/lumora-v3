@@ -16,6 +16,21 @@ export const CORTO = {
   inferencia: 'Inferencia',
   relacion: 'Relación',
   intencion: 'Intención',
+  variables: 'Variables',
+  grafica: 'Tablas',
+  concepto: 'Conceptos',
+  fenomeno: 'Fenómenos',
+  conclusion: 'Conclusiones',
+  derechos: 'Derechos',
+  perspectiva: 'Perspectivas',
+  hechoopinion: 'Hecho/opinión',
+  mecanismo: 'Mecanismos',
+  consecuencia: 'Consecuencias',
+  vocabulario: 'Vocabulario',
+  gramatica: 'Gramática',
+  textocorto: 'Texto corto',
+  funcion: 'Función',
+  conector: 'Conectores',
 }
 
 /** Nivel por tipo según un diagnóstico: sin errores = 1, un error = 0,5, todos mal = 0. */

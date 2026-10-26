@@ -54,7 +54,7 @@ export const MEDALLAS = [
   { id: 'racha-3', nombre: 'Tres días seguidos', como: 'Practica tres días seguidos.', ok: (e) => calcularRacha(e.actividad ?? {}) >= 3 },
   { id: 'subiste', nombre: 'Subiste tu puntaje', como: 'Repite un diagnóstico y acierta más que en el primero.', ok: (e) => Object.values(porCompetencia(e)).some((l) => l.length >= 2 && l[l.length - 1].aciertos > l[0].aciertos) },
   { id: 'sin-ciegos', nombre: 'Sin puntos ciegos', como: 'Haz un diagnóstico sin ningún error con seguridad.', ok: (e) => (e.intentos ?? []).some((i) => i.puntosCiegos === 0) },
-  { id: 'dos-competencias', nombre: 'Dos miradas', como: 'Haz el diagnóstico de razonamiento cuantitativo y el de lectura crítica.', ok: (e) => Object.keys(porCompetencia(e)).length >= 2 },
+  { id: 'dos-competencias', nombre: 'Dos miradas', como: 'Haz el diagnóstico de dos competencias distintas (por ejemplo, cuantitativo y lectura crítica).', ok: (e) => Object.keys(porCompetencia(e)).length >= 2 },
 ]
 
 /** Todas las medallas con su estado. */

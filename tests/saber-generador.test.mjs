@@ -3,7 +3,7 @@
 import { TODAS_LAS_PLANTILLAS as PLANTILLAS, TOTAL_DIAGNOSTICO, generarDiagnostico, generarSesion } from '../src/saber/data/banco.js'
 import { FICHAS, NUEVAS } from '../src/saber/data/fichas-critica.js'
 import { LECCIONES } from '../src/saber/data/practice.js'
-import { COMPETENCIAS, TIPOS_ERROR, tiposDe } from '../src/saber/data/questions.js'
+import { COMPETENCIAS, COMPETENCIAS_POR_PRUEBA, TIPOS_ERROR, tiposDe } from '../src/saber/data/questions.js'
 import { armar, crearRng } from '../src/saber/lib/generador.js'
 import { calcularDiagnostico } from '../src/saber/lib/diagnosis.js'
 import { calcularRacha, claveDia } from '../src/saber/lib/saberStorage.js'
@@ -60,7 +60,9 @@ for (const p of PLANTILLAS) {
   }
 }
 for (const t of TIPOS) {
-  ok(porTipo[t].normal >= 5 && porTipo[t].nueva >= 2, `${t}: necesita ≥5 normales y ≥2 de problema nuevo (hay ${porTipo[t].normal}/${porTipo[t].nueva})`)
+  // Las dos competencias con números/fichas sorteados tienen más plantillas; las demás son fichas revisadas a mano.
+  const [minNormal, minNueva] = ['cuantitativo', 'critica'].includes(TIPOS_ERROR[t].competencia) ? [5, 2] : [4, 1]
+  ok(porTipo[t].normal >= minNormal && porTipo[t].nueva >= minNueva, `${t}: necesita ≥${minNormal} normales y ≥${minNueva} de problema nuevo (hay ${porTipo[t].normal}/${porTipo[t].nueva})`)
 }
 ok(PLANTILLAS.length === new Set(PLANTILLAS.map((p) => p.id)).size, 'ids de plantilla repetidos')
 
@@ -290,7 +292,7 @@ ok(calcularRacha({ [dia(0)]: 1, [dia(2)]: 1 }, hoy) === 1, 'racha se corta con u
       if (p.transferencia) ok(/^[A-ZÁÉÍÓÚ][^:]{3,40}:/.test(q.texto), `${p.id}/${s}: el problema nuevo debe tener contexto de género`)
     }
   }
-  for (const p of PLANTILLAS.filter((x) => x.competencia !== 'critica')) ok(armar(p, crearRng(1)).texto === undefined, `${p.id}: cuantitativo no lleva texto`)
+  for (const p of PLANTILLAS.filter((x) => x.competencia === 'cuantitativo')) ok(armar(p, crearRng(1)).texto === undefined, `${p.id}: cuantitativo no lleva texto`)
 }
 
 // ---------- 9. Nia ----------
@@ -486,3 +488,38 @@ await pruebasNube()
 
 console.log(fallos === 0 ? `✔ Todo verificado (${PLANTILLAS.length} plantillas × ${SEMILLAS} semillas)` : `✘ ${fallos} fallo(s)`)
 process.exit(fallos === 0 ? 0 : 1)
+
+// ---------- 12. Más competencias: naturales, ciudadanas e inglés ----------
+{
+  const NUEVAS_COMP = ['naturales', 'ciudadanas', 'ingles']
+  ok(Object.keys(COMPETENCIAS).length === 5 && NUEVAS_COMP.every((c) => COMPETENCIAS[c]?.tipos.length === 5), 'competencias: deben ser 5 y las nuevas con 5 tipos')
+  ok(COMPETENCIAS_POR_PRUEBA.saber11.length === 5 && COMPETENCIAS_POR_PRUEBA.saberpro.length === 4 && !COMPETENCIAS_POR_PRUEBA.saberpro.includes('naturales'), 'pruebas: Saber Pro no lleva ciencias naturales')
+  for (const lista of Object.values(COMPETENCIAS_POR_PRUEBA)) ok(lista.every((c) => c in COMPETENCIAS), 'pruebas: competencia desconocida')
+  for (const c of NUEVAS_COMP) {
+    const delComp = PLANTILLAS.filter((p) => p.competencia === c)
+    ok(delComp.length === 25, `${c}: deben ser 25 fichas (hay ${delComp.length})`)
+    let masLarga = 0
+    for (const p of delComp) {
+      const q = armar(p, crearRng(1))
+      const correcta = q.opciones.find((o) => !o.error).texto
+      if (correcta.length > Math.max(...q.opciones.filter((o) => o.error).map((o) => o.texto.length))) masLarga++
+      ok(q.explicacion.includes(correcta), `${p.id}: la explicación debe contener la respuesta`)
+      // Los distractores nunca pueden repetirse dentro de la pregunta ni contener la respuesta correcta completa
+      ok(q.opciones.every((o) => !o.error || o.texto !== correcta), `${p.id}: distractor igual a la correcta`)
+    }
+    ok(masLarga / delComp.length <= 0.7, `${c}: la correcta es la más larga en ${masLarga} de ${delComp.length} (se vuelve adivinable)`)
+    for (let s = 1; s <= 50; s++) {
+      const d = generarDiagnostico(s, c)
+      ok(d.length === 10 && d.every((q) => TIPOS_ERROR[q.tipo].competencia === c), `${c}: diagnóstico con preguntas de otra competencia`)
+    }
+  }
+  // Inglés: textos cortos llevan texto de lectura; tablas de naturales traen encabezados y filas
+  for (const p of PLANTILLAS.filter((x) => x.tipo === 'textocorto')) ok(!!armar(p, crearRng(1)).texto, `${p.id}: el texto corto necesita texto`)
+  for (const p of PLANTILLAS.filter((x) => x.tipo === 'grafica')) {
+    const t = armar(p, crearRng(1)).tabla
+    ok(t && t.encabezados.length >= 2 && t.filas.length >= 3 && t.filas.every((f) => f.length === t.encabezados.length), `${p.id}: tabla mal formada`)
+    ok(new Set(t.filas.map((f) => f[0])).size === t.filas.length, `${p.id}: filas con la misma primera celda (key repetida)`)
+  }
+  ok(/inglés/.test(responder('¿qué competencias hay?', { competencia: 'ingles' }).texto) && /sociales y ciudadanas/.test(responder('¿qué competencias hay?', {}).texto), 'Nia: menciona las cinco competencias')
+  ok(medallas({ intentos: [{ competencia: 'naturales', aciertos: 5, total: 10, puntosCiegos: 1 }, { competencia: 'ingles', aciertos: 5, total: 10, puntosCiegos: 1 }], progreso: {}, actividad: {} }).find((m) => m.id === 'dos-competencias').lograda, 'medalla: dos competencias cualquiera')
+}

@@ -31,8 +31,9 @@ La sección **Mi ruta Saber** es el recorrido principal para estudiantes de 11°
 universitarios que se preparan para Saber 11 y Saber Pro. Con `MODO_SABER`
 activo funciona sin cuenta ni credenciales.
 
-1. **Diagnóstico** de 10 preguntas en dos competencias a elegir: razonamiento
-   cuantitativo y lectura crítica (cada una con su diagnóstico, su mapa y su
+1. **Diagnóstico** de 10 preguntas en cinco competencias a elegir: razonamiento
+   cuantitativo, lectura crítica, ciencias naturales, sociales y ciudadanas e
+   inglés (cada una con su diagnóstico, su mapa y su
    historial). Antes de ver el resultado, la persona marca qué tan segura está (segura, dudo, adiviné).
 2. **Mapa de errores** por tipo (base equivocada, proporción mal aplicada,
    conversión de unidades, lectura de datos, operación incompleta; en lectura
