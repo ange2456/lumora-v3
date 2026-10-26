@@ -31,6 +31,7 @@ import TeacherSpace from "./TeacherSpace";
 import SaberGate from "./saber/SaberGate";
 import Cuenta from "./saber/screens/Cuenta";
 import { useSesion } from "./saber/nube/useSesion";
+import MenuPerfil from "./MenuPerfil";
 import "./saber/saber.css";
 import { MODO_SABER } from "./config";
 import { supabaseConfigured } from "./supabaseConfig";
@@ -636,6 +637,17 @@ function App() {
               )}
             </div>
             )}
+            {cuentaSaber && !activeAccount ? (
+              <MenuPerfil
+                sesion={sesion}
+                apodo={cuentaSaber.apodo}
+                onMiCuenta={() => chooseSection("Mi cuenta")}
+                onSalio={() => {
+                  setActiveNav("Inicio");
+                  setShowSaber(false);
+                }}
+              />
+            ) : (
             <button
               className="profile-button"
               onClick={() =>
@@ -662,6 +674,7 @@ function App() {
               </span>
               <span>{activeAccount ? "Salir" : cuentaSaber ? cuentaSaber.apodo : MODO_SABER && sesion.fase !== "local" ? "Iniciar sesión" : "Mi espacio"}</span>
             </button>
+            )}
           </div>
         </header>
 
