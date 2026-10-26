@@ -1737,3 +1737,212 @@
     margin-top: 0;
   }
 }
+
+/* Onboarding: preguntas iniciales y guardar el avance después del primer resultado */
+.saber .eleccion.eleccion-columna {
+  grid-template-columns: 1fr;
+}
+.saber .asi-te-ayuda {
+  margin-top: 10px;
+}
+.saber .asi-te-ayuda:not(:empty) {
+  padding: 14px 16px;
+  background: var(--tint-lumen);
+  border-radius: 12px;
+}
+.saber .asi-te-ayuda ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+.saber .asi-te-ayuda li {
+  margin: 4px 0;
+}
+.saber .guardar-avance {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 20px;
+  padding: 16px 18px;
+  background: var(--tint-lumen);
+  border: 1.5px solid var(--accent);
+  border-radius: 14px;
+}
+.saber .guardar-avance p {
+  margin: 4px 0 0;
+  max-width: 52ch;
+}
+.saber .guardar-avance .acciones {
+  margin: 0;
+}
+.saber .aviso-invitado {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  background: var(--tint-lumen);
+  border-radius: 12px;
+}
+
+/* Bienvenida (Inicio): mismo lenguaje visual que la ruta */
+.saber .inicio .inicio-banner {
+  margin-top: 0;
+}
+.saber .inicio-banner-texto {
+  position: relative;
+  max-width: 54ch;
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+.saber .inicio-chips {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.saber .inicio-chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+.saber .pasos-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+.saber .pasos-tarjetas li {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(80, 60, 140, 0.06);
+}
+.saber .paso-icono {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+}
+.saber .paso-icono.morado {
+  background: #f0eaff;
+  color: #6240bf;
+}
+.saber .paso-icono.verde {
+  background: #e6f7ef;
+  color: #1f7a58;
+}
+.saber .paso-icono.naranja {
+  background: #fff1de;
+  color: #9a5f14;
+}
+.saber .paso-texto {
+  display: grid;
+  gap: 3px;
+}
+.saber .paso-etiqueta {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.saber .paso-texto strong {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+}
+.saber .paso-texto .ayuda {
+  line-height: 1.5;
+}
+.saber .inicio-form {
+  margin-top: 26px;
+  padding: 22px 20px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(80, 60, 140, 0.07);
+}
+.saber .inicio-form-titulo {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+.saber .inicio-form-sub {
+  margin: 4px 0 8px;
+}
+.saber .inicio-form .bloque {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--line);
+}
+.saber .inicio-form .bloque:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+.saber .bloque-num {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+.saber .eleccion-icono {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--tint-lumen);
+  color: var(--accent);
+}
+.saber .eleccion label:has(input:checked) .eleccion-icono {
+  background: var(--accent);
+  color: #fff;
+}
+.saber .asi-te-ayuda strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.saber .boton-grande {
+  min-height: 54px;
+  padding-inline: 34px;
+  font-size: 1.05rem;
+}
+.saber .inicio-form .acciones {
+  margin-top: 26px;
+  align-items: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .saber .pasos-tarjetas li {
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .saber .pasos-tarjetas li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(80, 60, 140, 0.1);
+  }
+}

@@ -52,7 +52,9 @@ export default function Respaldo({ estado, onImportar, soloCargar = false, combi
       <p className="ayuda">
         {soloCargar
             ? 'Si lo descargaste desde Lumora en otro dispositivo, cárgalo aquí y sigues donde lo dejaste.'
-            : 'Tu progreso vive en este dispositivo. Si vas a cambiar de celular o limpiar el navegador, guárdalo en un archivo y cárgalo después.'}
+            : combinar
+                ? 'Tu progreso ya se guarda en tu cuenta y lo ves desde cualquier dispositivo. Este archivo es una copia extra, por si quieres tener la tuya.'
+                : 'Tu progreso vive en este dispositivo. Si vas a cambiar de celular o limpiar el navegador, guárdalo en un archivo y cárgalo después.'}
       </p>
       <div className="acciones" style={{ marginTop: 14 }}>
         {!soloCargar && (<button className="boton boton-suave" type="button" onClick={descargar}>

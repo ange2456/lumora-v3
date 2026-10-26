@@ -294,7 +294,7 @@ function App() {
   );
 
   
-  function chooseSection(label, modoAcceso = "entrar") {
+  function chooseSection(label, modoAcceso = "invitado") {
     if (MODO_SABER && label !== "Inicio") {
       label = label === "Mi cuenta" && sesion.fase === "activa" ? "Mi cuenta" : "Mi ruta Saber";
     }
@@ -644,7 +644,9 @@ function App() {
                   ? handleSignOut()
                   : cuentaSaber
                     ? chooseSection("Mi cuenta")
-                    : chooseSection("Mi aprendizaje")
+                    : MODO_SABER && sesion.fase === "anonimo"
+                      ? chooseSection("Mi ruta Saber", "entrar")
+                      : chooseSection("Mi aprendizaje")
               }
               title={
                 activeAccount
@@ -694,6 +696,7 @@ function App() {
               nombreLocal={profile.name}
               usuarioLocalId={profile.id}
               modoInicial={saberModo}
+              key={saberModo === "entrar" && sesion.fase === "anonimo" ? "acceso" : "app"}
             />
           ) : showProgress ? (
             <Progress
@@ -716,13 +719,13 @@ function App() {
               </div>
               <h1>
                 {(MODO_SABER ? cuentaSaber?.apodo : profile.name)
-                  ? `Hola, ${MODO_SABER ? cuentaSaber.apodo : profile.name}. ¡Bienvenida a `
-                  : "Hola, ¡bienvenida a "}
+                  ? `Hola, ${MODO_SABER ? cuentaSaber.apodo : profile.name}. Te damos la bienvenida a `
+                  : "Te damos la bienvenida a "}
                 <span>Lumora!</span>
               </h1>
               <p>
                 {MODO_SABER
-                  ? "Un buen puntaje en Saber abre puertas. Descubre qué errores repites, practica justo eso y compruébalo con problemas nuevos. Para quien está en 11° y para quien está en la universidad, haya hecho un preicfes o no."
+                  ? "Un buen puntaje en Saber abre puertas. Descubre qué errores repites, practica justo eso y compruébalo con problemas nuevos. Para quien está en 11° y para quien está en la universidad. En unos 5 minutos tienes tu mapa de errores."
                   : "No se trata solo de encontrar la respuesta. Se trata de comprender cómo llegar a ella. Prepárate para Saber 11 y Saber Pro descubriendo qué errores repites y practicando justo eso."}
               </p>
               <div className="welcome-actions">
@@ -732,7 +735,7 @@ function App() {
                     onClick={() =>
                       chooseSection(
                         "Mi ruta Saber",
-                        cuentaSaber ? "entrar" : "registro"
+                        "invitado"
                       )
                     }
                   >

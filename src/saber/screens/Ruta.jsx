@@ -1,5 +1,5 @@
 import { Sparkles } from 'lucide-react';
-import { COMPETENCIAS, TIPOS_ERROR } from '../data/questions.js';
+import { COMPETENCIAS, COMPETENCIAS_POR_PRUEBA, TIPOS_ERROR } from '../data/questions.js';
 import { TOTAL_DIAGNOSTICO } from '../data/banco.js';
 import Respaldo from './Respaldo.jsx';
 import MapaAvance from './MapaAvance.jsx';
@@ -15,6 +15,8 @@ export default function Ruta({ combinar, estado, competencia, onCompetencia, int
     const pct = Math.min(100, (hoy / META_DIARIA) * 100);
     const prueba = perfil?.prueba === 'saberpro' ? 'Saber Pro' : 'Saber 11';
     const todos = COMPETENCIAS[competencia].tipos;
+    // Solo las competencias de tu prueba (y la que tengas abierta, aunque venga de un respaldo).
+    const lista = Object.values(COMPETENCIAS).filter((c) => (COMPETENCIAS_POR_PRUEBA[perfil?.prueba] ?? COMPETENCIAS_POR_PRUEBA.saber11).includes(c.id) || c.id === competencia);
     const orden = diag
         ? [...diag.porTipo.map((t) => t.tipo), ...todos.filter((t) => !diag.porTipo.some((x) => x.tipo === t))]
         : todos;
@@ -33,7 +35,7 @@ export default function Ruta({ combinar, estado, competencia, onCompetencia, int
 
       <p className="etiqueta-seccion etiqueta-practica" id="etiqueta-competencia">¿Qué quieres practicar hoy?</p>
       <div className="selector-competencia selector-grande" role="group" aria-labelledby="etiqueta-competencia">
-        {Object.values(COMPETENCIAS).map((c) => (<button key={c.id} type="button" aria-pressed={c.id === competencia} onClick={() => onCompetencia(c.id)}>
+        {lista.map((c) => (<button key={c.id} type="button" aria-pressed={c.id === competencia} onClick={() => onCompetencia(c.id)}>
             {c.nombre}
           </button>))}
       </div>

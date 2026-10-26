@@ -9,7 +9,8 @@ clases con códigos de acceso y recursos compartidos por el docente.
 `src/config.js` tiene un único interruptor, `MODO_SABER`:
 
 - `true` (actual): Lumora es la ruta Saber. La primera pantalla es **Inicio**; el
-  botón «Empezar mi ruta Saber» y el menú llevan a crear cuenta o iniciar sesión.
+  botón «Empezar mi ruta Saber» lleva a probar **sin crear cuenta**; la cuenta se
+  ofrece después del primer resultado, para guardar el avance.
   Se ocultan las clases, las actividades genéricas y el espacio docente.
   - **Con Supabase configurado** (variables `VITE_SUPABASE_URL` y
     `VITE_SUPABASE_PUBLISHABLE_KEY`): cuentas con correo y contraseña, datos de
@@ -30,8 +31,9 @@ La sección **Mi ruta Saber** es el recorrido principal para estudiantes de 11°
 universitarios que se preparan para Saber 11 y Saber Pro. Con `MODO_SABER`
 activo funciona sin cuenta ni credenciales.
 
-1. **Diagnóstico** de 10 preguntas en dos competencias a elegir: razonamiento
-   cuantitativo y lectura crítica (cada una con su diagnóstico, su mapa y su
+1. **Diagnóstico** de 10 preguntas en cinco competencias a elegir: razonamiento
+   cuantitativo, lectura crítica, ciencias naturales, sociales y ciudadanas e
+   inglés (cada una con su diagnóstico, su mapa y su
    historial). Antes de ver el resultado, la persona marca qué tan segura está (segura, dudo, adiviné).
 2. **Mapa de errores** por tipo (base equivocada, proporción mal aplicada,
    conversión de unidades, lectura de datos, operación incompleta; en lectura
@@ -66,6 +68,7 @@ El contenido de `src/saber/data` es original y no proviene de pruebas del ICFES.
   y se sube. Después se guarda solo, unos segundos tras cada cambio. Sin
   conexión, los cambios se quedan en el dispositivo y se suben al volver.
 - Si lo guardado en la cuenta no se puede leer, no se pisa: se avisa.
+- Quien llega sin cuenta practica como **invitado** (progreso en el dispositivo). Al crear una cuenta o entrar a una existente, ese avance se suma a la cuenta y la copia de invitado se borra (`src/saber/lib/invitado.js`).
 - Al cerrar sesión se borra la copia local del equipo.
 - «Mi cuenta»: editar datos, borrar el progreso o eliminar la cuenta completa.
 

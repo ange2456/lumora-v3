@@ -6,6 +6,7 @@ import { cargar, claveDia, guardar, nuevaSemilla } from './lib/saberStorage.js';
 import Inicio from './screens/Inicio.jsx';
 import Nia from './screens/Nia.jsx';
 import EstadoNube from './screens/EstadoNube.jsx';
+import GuardarAvance from './screens/GuardarAvance.jsx';
 import { useSincronizacion } from './nube/useSincronizacion.js';
 import { fusionar } from './lib/fusion.js';
 import { recompensa as calcularRecompensa } from './lib/logros.js';
@@ -13,7 +14,7 @@ import Pregunta from './screens/Pregunta.jsx';
 import Practica from './screens/Practica.jsx';
 import Resultado from './screens/Resultado.jsx';
 import Ruta from './screens/Ruta.jsx';
-export default function SaberApp({ usuarioId, nombre, nube = null }) {
+export default function SaberApp({ usuarioId, nombre, nube = null, invitado = null }) {
     // Con cuenta, el perfil (apodo y prueba) viene de la cuenta.
     const perfilCuenta = nube ? { apodo: nube.perfil.apodo, prueba: nube.perfil.prueba } : null;
     const [guardado, setEstado] = useState(() => cargar(usuarioId));
@@ -64,8 +65,8 @@ export default function SaberApp({ usuarioId, nombre, nube = null }) {
     const preguntasUltimo = (semillaUltimo == null ? [] : generarDiagnostico(semillaUltimo, competencia));
     const diag = ultimoIntento ? calcularDiagnostico(ultimoIntento.respuestas, preguntasUltimo) : null;
     const indiceActual = enCurso ? enCurso.respuestas.length : 0;
-    const crearPerfil = (perfil) => {
-        setEstado((e) => ({ ...e, perfil }));
+    const crearPerfil = (perfil, competenciaElegida) => {
+        setEstado((e) => ({ ...e, perfil, ...(esCompetencia(competenciaElegida) ? { competencia: competenciaElegida } : {}) }));
         ir('ruta');
     };
     const empezarDiagnostico = () => {
@@ -146,7 +147,8 @@ export default function SaberApp({ usuarioId, nombre, nube = null }) {
 
       <div className="saber-contenido">
         {nube && <EstadoNube {...sincro}/>}
-        {pantalla === 'inicio' && <Inicio onCrear={crearPerfil} onImportar={importar} nombreInicial={nombre}/>}
+        {invitado && estado.intentos.length > 0 && (pantalla === 'resultado' || pantalla === 'ruta') && (<GuardarAvance {...invitado}/>)}
+        {pantalla === 'inicio' && <Inicio onCrear={crearPerfil} onImportar={importar} nombreInicial={nombre} invitado={!!invitado}/>}
 
         {pantalla === 'ruta' && (<Ruta combinar={!!nube} estado={estado} competencia={competencia} onCompetencia={cambiarCompetencia} intentos={intentosComp} diag={diag} hayDiagnosticoEnCurso={!!enCurso && competenciaEnCurso === competencia && enCurso.respuestas.length > 0} onDiagnostico={empezarDiagnostico} onContinuarDiagnostico={() => ir('diagnostico')} onVerResultado={() => ir('resultado')} onPracticar={practicar} onImportar={importar}/>)}
 

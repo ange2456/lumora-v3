@@ -5,10 +5,12 @@ import { armar, barajar, crearRng } from '../lib/generador.js'
 import { COMPETENCIA_INICIAL, TIPOS_ERROR, tiposDe } from './questions.js'
 import { PLANTILLAS } from './plantillas.js'
 import { PLANTILLAS_CRITICA } from './plantillas-critica.js'
+import { PLANTILLAS_SABERES } from './plantillas-saberes.js'
 
 export const TODAS_LAS_PLANTILLAS = [
   ...PLANTILLAS.map((p) => ({ competencia: 'cuantitativo', ...p })),
   ...PLANTILLAS_CRITICA,
+  ...PLANTILLAS_SABERES,
 ]
 
 export const POR_TIPO_DIAGNOSTICO = 2
