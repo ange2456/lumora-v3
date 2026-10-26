@@ -1456,3 +1456,80 @@ button:disabled {
     animation-duration: 0.01ms !important;
   }
 }
+
+
+/* ---------- Menú del perfil ---------- */
+.menu-perfil {
+  position: relative;
+}
+.menu-perfil-lista {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 40;
+  min-width: 210px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 14px 34px rgba(60, 40, 120, 0.18);
+}
+.menu-perfil-nombre {
+  margin: 4px 10px 8px;
+  color: #6c6580;
+  font-size: 12px;
+  font-weight: 700;
+}
+.menu-perfil-lista > button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  color: #2b2540;
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+.menu-perfil-lista > button:hover,
+.menu-perfil-lista > button:focus-visible {
+  background: #f1ecff;
+  outline: none;
+}
+.menu-perfil-lista > button:focus-visible {
+  box-shadow: inset 0 0 0 2px #6240bf;
+}
+.menu-perfil-salir {
+  margin-top: 4px;
+  border-top: 1px solid var(--border) !important;
+  border-radius: 0 0 10px 10px !important;
+  color: #a02a2a !important;
+}
+.menu-perfil-aviso {
+  margin: 8px 6px 2px;
+  padding: 10px;
+  color: #6b2222;
+  background: #fff1f1;
+  border-radius: 10px;
+  font-size: 13px;
+}
+.menu-perfil-aviso p {
+  margin: 0 0 8px;
+}
+.menu-perfil-aviso button {
+  min-height: 40px;
+  padding: 6px 12px;
+  color: #fff;
+  background: #a02a2a;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
