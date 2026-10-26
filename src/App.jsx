@@ -30,7 +30,6 @@ import Progress from "./Progress";
 import TeacherSpace from "./TeacherSpace";
 import SaberGate from "./saber/SaberGate";
 import Cuenta from "./saber/screens/Cuenta";
-import Historia from "./saber/screens/Historia";
 import { useSesion } from "./saber/nube/useSesion";
 import "./saber/saber.css";
 import { MODO_SABER } from "./config";
@@ -794,6 +793,7 @@ function App() {
             </div>
           </section>
 
+          {!MODO_SABER && (
           <section className="principles-row" aria-label="Cómo aprender en Lumora">
             <div className="principle">
               <span className="principle-icon icon-purple">
@@ -823,11 +823,6 @@ function App() {
               </div>
             </div>
           </section>
-
-          {MODO_SABER && (
-            <div className="historia-inicio">
-              <Historia />
-            </div>
           )}
 
           {!MODO_SABER && (

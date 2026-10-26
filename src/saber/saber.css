@@ -1946,3 +1946,44 @@
     box-shadow: 0 12px 24px rgba(80, 60, 140, 0.1);
   }
 }
+
+
+/* ---------- Selector de competencias en cuadrícula ---------- */
+.saber .selector-grande {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px;
+}
+.saber .selector-grande button {
+  min-height: 56px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  text-align: center;
+}
+.saber .selector-grande button:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+
+/* ---------- «Por qué existe Lumora» con más presencia (dentro de Crear mi espacio) ---------- */
+.saber .historia {
+  position: relative;
+  margin: 24px 0 18px;
+  padding: 22px 22px 20px 26px;
+  background: linear-gradient(135deg, #f4efff 0%, #ffffff 70%);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--accent);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(98, 64, 191, 0.08);
+}
+.saber .historia h2 {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--accent);
+}
+.saber .historia p {
+  line-height: 1.6;
+}
