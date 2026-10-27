@@ -3,6 +3,8 @@ import { LECCIONES } from '../data/practice.js';
 import { generarSesion } from '../data/banco.js';
 import { TIPOS_ERROR } from '../data/questions.js';
 import Texto from './Texto.jsx';
+import BotonEscuchar from './BotonEscuchar.jsx';
+import { partesDePregunta } from '../lib/leer.js';
 import { Recompensa } from './Motivacion.jsx';
 const LETRAS = ['A', 'B', 'C', 'D'];
 const TOTAL = 4;
@@ -58,6 +60,7 @@ export default function Practica({ tipo, semilla, recompensa, erroresDiagnostico
             trabajarlo.
           </p>)}
 
+        <BotonEscuchar partes={[{ texto: `${leccion.titulo}. ${leccion.idea}. Ejemplo resuelto. ${leccion.ejemplo}. Truco para revisar. ${leccion.chequeo}`, lang: 'es-CO' }]} etiqueta="Escuchar la lección"/>
         <div className="leccion">
           <h2>{leccion.titulo}</h2>
           <p>{leccion.idea}</p>
@@ -150,6 +153,8 @@ export default function Practica({ tipo, semilla, recompensa, erroresDiagnostico
           <strong>Problema nuevo.</strong> Es una situación distinta a los ejercicios. Aplica lo que practicaste.
         </div>)}
 
+      <BotonEscuchar partes={partesDePregunta(ejercicio, info.competencia === 'ingles')}/>
+
       <p className="etiqueta-seccion">{info.nombre}</p>
       <Texto texto={ejercicio.texto}/>
       <h1 className="enunciado" style={{ fontFamily: 'var(--font-body)', letterSpacing: 0 }}>
@@ -218,6 +223,7 @@ export default function Practica({ tipo, semilla, recompensa, erroresDiagnostico
             </div>)}
 
           {mostrarExplicacion && (<div className="explicacion">
+              <BotonEscuchar partes={[{ texto: `${!acierto && elegida?.error ? elegida.porque + '. ' : ''}${ejercicio.explicacion}`, lang: 'es-CO' }]} etiqueta="Escuchar la explicación"/>
               {!acierto && propia.trim() && (<p>
                   <b>Tú pensaste:</b> «{propia.trim()}»
                 </p>)}

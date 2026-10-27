@@ -99,6 +99,10 @@ primer valor, el mapa de errores, en unos 5 minutos y sin crear cuenta.
 | 13. Registro después del valor | La cuenta es opcional y se ofrece tras el primer resultado. El avance de invitado se conserva y se suma a la cuenta. |
 | 14. Planes | **Omitida:** Lumora no tiene planes ni cobro. |
 
+### Accesibilidad e inclusión
+
+Lumora trae un botón **Accesibilidad** disponible en toda la app: tamaño del texto (3 niveles), alto contraste, letra de lectura fácil, más espacio al leer y menos movimiento. Las preguntas, lecciones y explicaciones se pueden **escuchar** en voz alta con la voz del dispositivo. Todo se guarda en el dispositivo, funciona con teclado y se revisó con la herramienta automática axe (WCAG 2.1 AA) sin errores en las pantallas principales, también con alto contraste. Si la persona no elige nada, se respetan los ajustes de su sistema.
+
 ## 5. Aporte propio
 
 **Borrador en primera persona. Léelo, cambia lo que no sea cierto y déjalo con tus
@@ -137,6 +141,8 @@ palabras.** Lo marcado con **[CONFIRMA]** solo lo sabes tú.
 **Qué no hay en esta versión:** el espacio docente quedó como siguiente paso.
 
 ## 6. Límites
+
+- **Accesibilidad:** se probó con herramientas automáticas y con teclado, pero **no** con personas usuarias de lector de pantalla ni con estudiantes con discapacidad. La lectura en voz alta depende de las voces que tenga el dispositivo.
 
 - Las preguntas son de práctica, originales y no son material oficial del ICFES.
 - Lumora no predice puntajes ni sustituye a un docente.

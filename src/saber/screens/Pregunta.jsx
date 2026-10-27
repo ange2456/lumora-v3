@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import Texto from './Texto.jsx';
+import BotonEscuchar from './BotonEscuchar.jsx';
+import { partesDePregunta } from '../lib/leer.js';
+import { TIPOS_ERROR } from '../data/questions.js';
 const LETRAS = ['A', 'B', 'C', 'D'];
 const NIVELES = [
     { id: 'segura', titulo: 'Segura', detalle: 'Lo tengo claro' },
@@ -20,6 +23,8 @@ export default function Pregunta({ pregunta, indice, total, onConfirmar }) {
           Pregunta {indice + 1} de {total}
         </p>
       </div>
+
+      <BotonEscuchar partes={partesDePregunta(pregunta, TIPOS_ERROR[pregunta.tipo]?.competencia === 'ingles')}/>
 
       <Texto texto={pregunta.texto}/>
 
