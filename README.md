@@ -82,7 +82,23 @@ Pruebas de la lógica y del contenido (sin dependencias extra):
 
 ```sh
 node tests/saber-generador.test.mjs
+node tests/a11y-prefs.test.mjs
 ```
+
+## Accesibilidad
+
+Lumora se puede usar de formas distintas. Arriba, junto al avatar, está el botón **Accesibilidad** (icono de persona) con:
+
+- **Tamaño del texto:** normal, grande o muy grande.
+- **Alto contraste:** letras negras sobre fondo blanco y bordes marcados.
+- **Letra de lectura fácil:** Atkinson Hyperlegible.
+- **Más espacio al leer:** más espacio entre líneas, letras y palabras.
+- **Menos movimiento:** sin animaciones ni transiciones.
+- **Escuchar:** botón en cada pregunta, lección y explicación que las lee en voz alta con la voz del dispositivo (Web Speech API; no se envía nada a ningún servidor). Si el navegador no tiene voces, el botón no aparece.
+
+Las preferencias se guardan en el dispositivo (`localStorage`) y se aplican como atributos `data-a11y-*` en `<html>` antes de pintar. Si la persona no ha elegido nada, se respetan los ajustes del sistema (menos movimiento y más contraste). Además: enlace «Saltar al contenido», panel operable con teclado (Escape cierra y devuelve el foco), etiquetas en todos los controles y los tipos de error marcados con letra además de color.
+
+Código: `src/BotonAccesibilidad.jsx`, `src/accesibilidad.css`, `src/saber/lib/accesibilidad.js`, `src/saber/lib/leer.js`, `src/saber/screens/BotonEscuchar.jsx`. Prueba: `node tests/a11y-prefs.test.mjs`.
 
 ## Ejecutar la aplicación
 

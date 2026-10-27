@@ -1,5 +1,5 @@
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap");
 
 :root {
   font-family: "DM Sans", sans-serif;
@@ -561,7 +561,7 @@ button:disabled {
 
 .floating-card small {
   margin-top: 4px;
-  color: #8b8599;
+  color: #5f5a73;
   font-size: 9px;
 }
 

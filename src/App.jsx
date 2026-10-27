@@ -32,6 +32,7 @@ import SaberGate from "./saber/SaberGate";
 import Cuenta from "./saber/screens/Cuenta";
 import { useSesion } from "./saber/nube/useSesion";
 import MenuPerfil from "./MenuPerfil";
+import BotonAccesibilidad from "./BotonAccesibilidad";
 import "./saber/saber.css";
 import { MODO_SABER } from "./config";
 import { supabaseConfigured } from "./supabaseConfig";
@@ -500,6 +501,7 @@ function App() {
 
   return (
     <div className="app-shell">
+      <a className="saltar" href="#contenido">Saltar al contenido</a>
       <aside className={`sidebar ${menuOpen ? "sidebar-open" : ""}`}>
         <a
           className="brand"
@@ -599,6 +601,7 @@ function App() {
           </div>
 
           <div className="topbar-actions">
+            <BotonAccesibilidad />
             {!MODO_SABER && (
             <span className="open-library">
               <span className="online-dot" />
@@ -685,7 +688,7 @@ function App() {
           </p>
         )}
 
-        <div className="page-container">
+        <div className="page-container" id="contenido" tabIndex={-1}>
           {showTeacherSpace ? (
             <TeacherSpace
               onBack={() => chooseSection("Inicio")}
